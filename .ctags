@@ -1,0 +1,21 @@
+
+--langmap=c++:+.C
+--c++-kinds=-p
+
+--langmap=perl:+.pod
+--regex-perl=/^=head1[[:space:]]*(.+)/\1/o,pod/
+--regex-perl=/^=head2[[:space:]]*(.+)$/. \1/o,pod/
+--regex-perl=/^=head3[[:space:]]*(.+)$/.. \1/o,pod/
+--regex-perl=/^=head4[[:space:]]*(.+)$/... \1/o,pod/
+--regex-perl=/^=for[[:space:]]+([^:]+):(.*)$/*\1:\2/o,pod/
+--regex-perl=/^__(DATA|END)__$/__\1__/l,labels/
+
+--langmap=perl:+.pm
+--regex-perl=/^use[[:space:]]+([a-zA-Z0-9:]+)/\1/u,use/
+--regex-perl=/(my|our|local)[[:space:]]*\(?([\$@%A-Za-z0-9_ ,]+)/\1::\2/a,attribute/
+--regex-perl=/^[[:space:]]*(has)[[:space:]]+['"]?([a-zA-Z0-9_]+)/\1::\2/a,attribute/
+--regex-perl=/^[[:space:]]*(after|override)[[:space:]]+['"]?([a-zA-Z0-9_]+)/\1::\2/m,method/
+--regex-perl=/^[[:space:]]*extends[[:space:]]+['"]?([a-zA-Z0-9_]+)/\1/e,extends/
+
+
+--regex-make=/^([^:# \t]+)[ \t]*:($|[^=]+)/\1/t,targets/
